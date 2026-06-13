@@ -248,4 +248,4 @@ The Portuguese copy uses Portuguese function names, menu responses, scope keywor
 
 ## License
 
-Add your preferred license before publishing the repository.
+MIT LICENSE
