@@ -7,7 +7,8 @@ A Flask-based WhatsApp webhook bot designed to run as a 24/7 PythonAnywhere Web 
 - WhatsApp Cloud API webhook verification and message handling
 - Gemini-powered responses for dental clinic support
 - Scope filtering before calling the AI model
-- Short WhatsApp-friendly replies in Brazilian Portuguese
+- English source code, assistant instructions, and WhatsApp replies
+- Short WhatsApp-friendly responses
 - Basic menu options for common requests
 - Safe fallback responses for unsupported message types and AI errors
 - PythonAnywhere-first deployment as a continuously available web app
@@ -17,9 +18,17 @@ A Flask-based WhatsApp webhook bot designed to run as a 24/7 PythonAnywhere Web 
 ```text
 .
 |-- app.py              # Flask app, WhatsApp webhook routes, and response flow
-|-- escopo_clinica.py   # Allowed clinic topics and out-of-scope response
+|-- clinic_scope.py     # Allowed clinic topics and out-of-scope response
 |-- gemini_client.py    # Gemini client setup and dental assistant instructions
+|-- app_en.py           # English app copy
+|-- clinic_scope_en.py  # English scope copy
+|-- gemini_client_en.py # English Gemini client copy
+|-- app_pt.py           # Portuguese app copy
+|-- escopo_clinica_pt.py
+|-- gemini_client_pt.py
 |-- .env                # Local environment variables, not meant for GitHub
+|-- README.en.md
+|-- README.pt.md
 `-- README.md
 ```
 
@@ -67,10 +76,55 @@ The folder should contain:
 
 ```text
 app.py
-escopo_clinica.py
+clinic_scope.py
 gemini_client.py
+app_en.py
+clinic_scope_en.py
+gemini_client_en.py
+app_pt.py
+escopo_clinica_pt.py
+gemini_client_pt.py
 .env
 README.md
+README.en.md
+README.pt.md
+LICENSE
+LICENSE.en
+LICENSE.pt
+```
+
+## Language Versions
+
+The default deployment files are English:
+
+```text
+app.py
+clinic_scope.py
+gemini_client.py
+```
+
+Additional duplicated versions are available:
+
+```text
+app_en.py
+clinic_scope_en.py
+gemini_client_en.py
+
+app_pt.py
+escopo_clinica_pt.py
+gemini_client_pt.py
+```
+
+To run the Portuguese version on PythonAnywhere, change the WSGI import to:
+
+```python
+from app_pt import app as application
+```
+
+To run the English copy explicitly, use:
+
+```python
+from app_en import app as application
 ```
 
 ### 2. Create the Virtual Environment
@@ -163,9 +217,20 @@ The assistant only answers questions related to:
 - Service channels
 - Clinic administrative questions
 
-Out-of-scope messages are blocked before Gemini is called and receive a fixed response from `escopo_clinica.py`.
+Out-of-scope messages are blocked before Gemini is called and receive a fixed response from `clinic_scope.py`.
 
 Gemini also receives a system instruction in `gemini_client.py` that reinforces the same boundaries and avoids unsafe behavior such as definitive diagnoses or medication prescriptions.
+
+## Default Language
+
+The main deployment files are implemented in English:
+
+- Python module names, functions, and constants use English naming.
+- Default menu responses and fallback messages are in English.
+- Gemini is instructed to answer in English.
+- Scope keywords in `clinic_scope.py` are English-based.
+
+The Portuguese copy uses Portuguese function names, menu responses, scope keywords, and Gemini instructions.
 
 ## Security Notes
 
@@ -176,11 +241,11 @@ Gemini also receives a system instruction in `gemini_client.py` that reinforces 
 
 ## Customization
 
-- Update allowed keywords in `escopo_clinica.py`.
+- Update allowed keywords in `clinic_scope.py`.
 - Update the Gemini system instruction in `gemini_client.py`.
-- Adjust fixed menu responses in `gerar_resposta()` inside `app.py`.
+- Adjust fixed menu responses in `generate_response()` inside `app.py`.
 - Change `GEMINI_MODEL` in `.env` to use another supported Gemini model.
 
 ## License
 
-MIT License
+Add your preferred license before publishing the repository.
