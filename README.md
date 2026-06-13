@@ -183,4 +183,4 @@ Gemini also receives a system instruction in `gemini_client.py` that reinforces 
 
 ## License
 
-Add your preferred license before publishing the repository.
+MIT License
