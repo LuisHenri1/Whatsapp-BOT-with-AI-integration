@@ -2,6 +2,12 @@
 
 A Flask-based WhatsApp webhook bot designed to run as a 24/7 PythonAnywhere Web App. It uses Google Gemini to answer patient questions for a dental clinic and is restricted to clinic-related topics such as appointments, business hours, location, dental services, visit preparation, service channels, and administrative questions.
 
+## Demo
+
+The demo shows the PythonAnywhere server log on the left and the WhatsApp conversation with the bot on the right.
+
+<img width="854" height="480" alt="2026-06-14 12-16-24_1(2)" src="https://github.com/user-attachments/assets/3854bccd-00f1-4477-b6d9-df65ca30ab5f" />
+
 ## Features
 
 - WhatsApp Cloud API webhook verification and message handling
